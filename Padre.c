@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc <= 3)
+    if (argc < 3)
     {
         fprintf(stderr, "Uso: Padre vlr-inip, vlr-finp, fnc, arg1, [arg2 … argN]\n");
         return 1;
@@ -19,6 +19,10 @@ int main(int argc, char *argv[])
     else if (pid == 0)
     {
         printf("Va a ejecutar al hijo PID(%s) = %d de padre %d\n", argv[3], getpid(), parent);
+        if(access(argv[3],F_OK)==-1){
+            printf("Falló la ejecución del proceso hijo");
+            return 1;
+        }
         int argscount = argc - 3;
         char *args[argscount + 2];
         for (int j = 0; j < argscount; j++)
