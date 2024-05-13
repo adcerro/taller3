@@ -19,7 +19,8 @@ int main(int argc, char *argv[])
     else if (pid == 0)
     {
         printf("Va a ejecutar al hijo PID(%s) = %d de padre %d\n", argv[3], getpid(), parent);
-        if(access(argv[3],F_OK)==-1){
+        if (access(argv[3], F_OK) == -1)
+        {
             printf("Falló la ejecución del proceso hijo");
             return 1;
         }
