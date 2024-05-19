@@ -3,8 +3,8 @@
 #include <unistd.h>
 int main(int argc, char *argv[])
 {
-    printf("Entra a fibonacci %d de padre %s\n", getpid(), argv[argc - 1]);
-    if (argc != 3)
+    printf("Entra a fibonacci %d de padre %d\n", getpid(), getppid());
+    if (argc != 2)
     {
         fprintf(stderr, "Uso: fibo lim-fibo\n");
         return 1;

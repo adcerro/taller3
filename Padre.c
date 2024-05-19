@@ -9,7 +9,6 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Uso: Padre vlr-inip, vlr-finp, fnc, arg1, [arg2 … argN]\n");
         return 1;
     }
-    int parent = getpid();
     int pid = fork();
     if (pid == -1)
     {
@@ -18,14 +17,13 @@ int main(int argc, char *argv[])
     }
     else if (pid == 0)
     {
-        printf("Va a ejecutar al hijo PID(%s) = %d de padre %d\n", argv[3], getpid(), parent);
+        printf("Va a ejecutar al hijo PID(%s) = %d de padre %d\n", argv[3], getpid(), getppid());
         int argscount = argc - 3;
-        char *args[argscount + 2];
+        char *args[argscount+1];
         for (int j = 0; j < argscount; j++)
         {
             args[j] = argv[j + 3];
         }
-        sprintf(args[argscount], "%d", parent);
         args[argscount + 1] = NULL;
         if (execv(args[0], args) == -1)
         {
@@ -35,7 +33,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        printf("Va a ejecutar al padre %d\n", parent);
+        printf("Va a ejecutar al padre %d\n", getpid());
         for (int i = atoi(argv[1]); i <= atoi(argv[2]); i++)
         {
             printf("Conteo en el padre %d\n", i);
