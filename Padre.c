@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
         {
             args[j] = argv[j + 3];
         }
-        args[argscount + 1] = NULL;
+        args[argscount] = NULL;
         if (execv(args[0], args) == -1)
         {
             printf("Falló la ejecución del proceso hijo");
