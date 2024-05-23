@@ -17,6 +17,6 @@ int main(int argc, char *argv[])
         suma = suma + i;
         cant++;
     }
-    float prom = suma/cant;
-    printf("La suma = %d y el promedio = %5.2f\n",suma,prom);
+    float prom = (float) suma/cant;
+    printf("La suma = %d y el promedio = %.2f\n",suma,prom);
 }
